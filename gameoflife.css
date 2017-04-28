@@ -1,0 +1,14 @@
+svg rect {
+    stroke: black;
+    fill: transparent;
+}
+
+svg rect.alive {
+    fill: green;
+}
+
+#start-button {
+    width: 800px;
+    font-size: 2em;
+    margin: 40px;
+}
