@@ -6,7 +6,7 @@ const INITIAL_LIVE_FRACTION = 0.2;
 var Board = null;
 var BoardTick = null;
 
-function initialiseBoard(svgId) {
+function initializeBoard(svgId) {
     // set the global Board object
     Board = document.getElementById(svgId);
 
@@ -18,7 +18,8 @@ function initialiseBoard(svgId) {
             boardHtml += 
                 `<rect id="${row}-${col}" 
                  x="${col*cellWidth}" y="${row*cellHeight}"
-                 width="${cellWidth}" height="${cellHeight}"/>`;
+                 width="${cellWidth}" height="${cellHeight}"
+                 onclick="toggleCell(event)" onmouseenter="toggleCell(event)"/>`;
         }
     }
     Board.innerHTML = boardHtml;
@@ -26,6 +27,23 @@ function initialiseBoard(svgId) {
 
 function getCell(row, col) {
     return Board.getElementById(`${row}-${col}`);
+}
+
+function setCellState(cell, alive) {
+    if (alive) {
+        cell.classList.add('alive');
+    } else {
+        cell.classList.remove('alive');
+    }
+}
+
+function toggleCell(event) {
+    // Only toggle if the left button is pressed
+    if (event.type == 'mouseenter' && event.buttons == 1
+       || event.type == 'click' && event.button == 0) {
+        var cell = event.target;
+        setCellState(cell, !cell.classList.contains('alive'));
+    }
 }
 
 function isAlive(row, col) {
@@ -59,14 +77,6 @@ function generateBoardState(liveFunc) {
         stateArray.push(newRow);
     }
     return stateArray;
-}
-
-function setCellState(cell, alive) {
-    if (alive) {
-        cell.classList.add('alive');
-    } else {
-        cell.classList.remove('alive');
-    }
 }
 
 function setBoardState(boardArray) {
