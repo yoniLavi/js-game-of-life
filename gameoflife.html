@@ -5,9 +5,14 @@
     <link rel="stylesheet" href="gameoflife.css">
 </head>
 <body onload="initialiseBoard('boardSvg')">
-    <button id="start-button" onclick="runGoL()">
-        (Re)Start Game of Life
-    </button>
+    <div id="controls">
+        <button onclick="randomizeBoard()">
+            Randomize board
+        </button>
+        <button onclick="togglePlay(this)">
+            Play
+        </button>
+    </div>
     <svg id="boardSvg" height="600" width="1000"></svg>
     <script src="gameoflife.js"></script>
 </body>

@@ -1,3 +1,14 @@
+#controls {
+    clear: both;
+    margin: 20px 40px;
+}
+
+#controls button {
+    width: 440px;
+    font-size: 1.5em;
+    margin: auto;
+}
+
 svg rect {
     stroke: black;
     fill: transparent;
@@ -5,10 +16,4 @@ svg rect {
 
 svg rect.alive {
     fill: green;
-}
-
-#start-button {
-    width: 800px;
-    font-size: 2em;
-    margin: 40px;
 }

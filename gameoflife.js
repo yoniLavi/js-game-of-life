@@ -87,14 +87,17 @@ function tick() {
     setBoardState(generateBoardState(willLive));
 }
 
-function play() {
-    // Enable the ticking, unless already started before
-    if (!BoardTick) {
-        BoardTick = setInterval(tick, TICK_DURATION);
-    }
+function randomizeBoard() {
+    setBoardState(randomBoardState());
 }
 
-function runGoL() {
-    setBoardState(randomBoardState());
-    play();
+function togglePlay(button) {
+    if (BoardTick) {
+        window.clearInterval(BoardTick);
+        BoardTick = null;
+        button.innerHTML = 'Play';
+    } else {
+        BoardTick = setInterval(tick, TICK_DURATION);
+        button.innerHTML = 'Pause';
+    }
 }
